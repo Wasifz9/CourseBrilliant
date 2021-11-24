@@ -1,0 +1,57 @@
+version: '3.7'
+services:
+   client:
+      build:
+         context: ./canws_frontend
+         dockerfile: Dockerfile
+      tty: true
+      ports:
+         - "3000:3000"
+      volumes:
+         - ./canws_frontend:/app
+         - /app/node_modules
+
+   mongodb:
+        image: mongo
+        container_name: mongo
+        restart: unless-stopped
+        command: mongod --auth
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: "admin"
+            MONGO_INITDB_ROOT_PASSWORD: "ECE444Group2"
+            MONGO_INITDB_DATABASE: canws-database
+            MONGODB_DATA_DIR: /data/db
+        volumes:
+            - mongodbdata:/data/db
+        networks:
+            - canws_backend
+
+   api:
+        build: 
+            context: ./canws_backend
+            dockerfile: Dockerfile
+        command: gunicorn -t 0 --bind 0.0.0.0:5001 app:app
+        ports:
+            - "5001:5001"
+        environment:
+            MONGODB_HOST: mongodb+srv://admin:ece444group2@canwsdb.ztsxp.mongodb.net/canwsDB?retryWrites=true&w=majority 
+            # MONGODB_USERNAME: "group2developers"
+            # MONGODB_PASSWORD: "ece2t1ftw"
+        volumes:
+            - appdata:/var/www/
+        depends_on: 
+            - mongodb
+        networks:
+            - canws_frontend
+            - canws_backend
+
+networks:
+   canws_frontend:
+      driver: bridge
+   canws_backend:
+      driver: bridge
+volumes:
+   mongodbdata:
+      driver: local
+   appdata:
+      driver: local

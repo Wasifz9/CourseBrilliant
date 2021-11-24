@@ -1,0 +1,5 @@
+flask
+gunicorn==20.0.4
+flask-mongoengine
+flask_cors
+pytest 
