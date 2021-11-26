@@ -30,13 +30,13 @@ services:
         build: 
             context: ./canws_backend
             dockerfile: Dockerfile
-        command: gunicorn -t 0 --bind 0.0.0.0:5001 app:app
+        command: gunicorn --bind 0.0.0.0:5001 app:app
         ports:
             - "5001:5001"
         environment:
-            MONGODB_HOST: mongodb+srv://admin:ece444group2@canwsdb.ztsxp.mongodb.net/canwsDB?retryWrites=true&w=majority 
-            # MONGODB_USERNAME: "group2developers"
-            # MONGODB_PASSWORD: "ece2t1ftw"
+            MONGODB_HOST: mongodb
+            MONGODB_USERNAME: "group2developers"
+            MONGODB_PASSWORD: "ece2t1ftw"
         volumes:
             - appdata:/var/www/
         depends_on: 
