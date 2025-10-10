@@ -15,13 +15,6 @@ import TextField from "@mui/material/TextField";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
-import CloseIcon from "@mui/icons-material/Close";
-import Drawer from "@mui/material/Drawer";
-import Snackbar from "@mui/material/Snackbar";
-import IconButton from "@mui/material/IconButton";
-import FolderSpecialIcon from "@mui/icons-material/FolderSpecial";
-import { Container } from "@mui/material";
-import Alert from '@mui/material/Alert';
 
 // API calls
 import SearchClient from "./api/search/search.js";
