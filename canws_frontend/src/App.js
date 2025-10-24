@@ -5,12 +5,6 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 // Styling components
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import MenuItem from "@mui/material/MenuItem";
 import TextField from "@mui/material/TextField";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
